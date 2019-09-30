@@ -54,7 +54,7 @@ class GenPlateScene:
         return self.img
 
     def generate(self,text):
-        print text, len(text)
+        print(text, len(text))
         fg = self.draw(text.decode(encoding="utf-8"))   # 得到白底黑字
         # cv2.imwrite('01.jpg', fg)
         fg = cv2.bitwise_not(fg)    # 得到黑底白字
@@ -82,7 +82,7 @@ class GenPlateScene:
         '''批量生成图片'''
         if (not os.path.exists(outputPath)):
             os.mkdir(outputPath)
-        for i in xrange(batchSize):
+        for i in range(batchSize):
             plate_str = self.gen_plate_string()
             img, loc =  self.generate(plate_str)
             if img is None:

@@ -35,12 +35,12 @@ def gen_rand():
     label= [];
     label.append(rand_range(0,31));
     label.append(rand_range(41,65));
-    for i in xrange(5):
+    for i in range(5):
         label.append(rand_range(31,65))
 
     name+=chars[label[0]]
     name+=chars[label[1]]
-    for i in xrange(5):
+    for i in range(5):
         name+=chars[label[i+2]]
     return name,label
 
@@ -65,7 +65,8 @@ class OCRIter(mx.io.DataIter):
         self.width = width
         self.provide_data = [('data', (batch_size, 3, height, width))]
         self.provide_label = [('softmax_label', (self.batch_size, num_label))]
-        print "start"
+        print("start")
+
     def __iter__(self):
 
         for k in range(self.count / self.batch_size):
@@ -156,7 +157,7 @@ def train():
     logging.basicConfig(level=logging.DEBUG, format=head)
     model.fit(X = data_train, eval_data = data_test, eval_metric = Accuracy, batch_end_callback=mx.callback.Speedometer(batch_size, 50))
     model.save("cnn-ocr")
-    print gen_rand()
+    print(gen_rand())
 
 
 if __name__ == '__main__':
